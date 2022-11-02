@@ -8,13 +8,18 @@ import Loginpage from "./page/Loginpage";
 import Userpage from "./page/Userpage";
 import PrivateRoute from "./page/PrivateRoute";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./page/Root";
 
 function App() {
   const [auth, setAuth] = useState(false);
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Homepage />,
+      element: <Root />,
+      children: [
+        { index: true, element: <Homepage /> },
+        { path: "/product", element: <Product /> },
+      ],
     },
     {
       path: "/about",
