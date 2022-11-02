@@ -7,27 +7,38 @@ import ProductDetail from "./page/ProductDetail";
 import Loginpage from "./page/Loginpage";
 import Userpage from "./page/Userpage";
 import PrivateRoute from "./page/PrivateRoute";
-import { Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 function App() {
   const [auth, setAuth] = useState(false);
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Homepage></Homepage>}></Route>
-        <Route path="/about" element={<About></About>}></Route>
-        <Route path="/product" element={<Product></Product>}></Route>
-        <Route
-          path="/product/:id"
-          element={<ProductDetail></ProductDetail>}
-        ></Route>
-        <Route path="/login" element={<Loginpage></Loginpage>}></Route>
-        <Route
-          path="/user"
-          element={<PrivateRoute auth={auth}></PrivateRoute>}
-        ></Route>
-      </Routes>
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Homepage />,
+    },
+    {
+      path: "/about",
+      element: <About />,
+    },
+    {
+      path: "/product",
+      element: <Product />,
+    },
+    {
+      path: "/product/:id",
+      element: <ProductDetail />,
+    },
+    {
+      path: "/login",
+      element: <Loginpage />,
+    },
+    {
+      path: "/user",
+      element: <PrivateRoute auth={auth} />,
+    },
+  ]);
+
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;
